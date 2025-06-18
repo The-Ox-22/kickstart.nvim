@@ -234,6 +234,7 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
+vim.lsp.inlay_hint.enable(true, { 0 })
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
@@ -256,6 +257,52 @@ require('lazy').setup({
   --
 
   {
+    'kdheepak/lazygit.nvim',
+    lazy = true,
+    keys = {
+      { '<leader>lg', '<cmd>LazyGit<cr>', desc = '[L]azy[G]it' },
+    },
+  },
+
+  -- {
+  --   'nwiizo/cargo.nvim',
+  --   build = 'cargo build --release',
+  --   lazy = false,
+  --   config = function()
+  --     require('cargo').setup {
+  --       float_window = true,
+  --       window_width = 0.8,
+  --       window_height = 0.8,
+  --       border = 'rounded',
+  --       auto_close = true,
+  --       close_timeout = 5000,
+  --     }
+  --   end,
+  --   ft = { 'rust' },
+  --   cmd = {
+  --     'CargoBench',
+  --     'CargoBuild',
+  --     'CargoClean',
+  --     'CargoDoc',
+  --     'CargoNew',
+  --     'CargoRun',
+  --     'CargoRunTerm',
+  --     'CargoTest',
+  --     'CargoUpdate',
+  --     'CargoCheck',
+  --     'CargoClippy',
+  --     'CargoAdd',
+  --     'CargoRemove',
+  --     'CargoFmt',
+  --     'CargoFix',
+  --   },
+  --   keys = {
+  --     { '<leader>cgb', '<cmd>cargobuild<cr>', desc = '[c]ar[g]o[b]uild' },
+  --     { '<leader>cgr', '<cmd>cargorun<cr>', desc = '[c]ar[g]o[r]un' },
+  --   },
+  -- },
+
+  {
     'nvim-tree/nvim-tree.lua',
     version = '*',
     lazy = false,
@@ -265,9 +312,24 @@ require('lazy').setup({
     config = function()
       require('nvim-tree').setup {
         vim.keymap.set('n', '<leader>,', ':NvimTreeToggle<CR>', { desc = 'Toggle nvim-tree', noremap = true }),
+        vim.keymap.set('n', ',,', ':NvimTreeFocus<CR>', { desc = 'Focus nvim-tree', noremap = true }),
       }
     end,
   },
+
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^6',
+    lazy = false,
+  },
+
+  -- {
+  --   'trixnz/sops.nvim',
+  --   lazy = false,
+  --   config = function()
+  --     require('sops.nvim').setup {}
+  --   end,
+  -- },
 
   -- Alternatively, use `config = function() ... end` for full control over the configuration.
   -- If you prefer to call `setup` explicitly, use:
@@ -685,9 +747,10 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
-        -- gopls = {},
+        gopls = {},
         -- pyright = {},
-        -- rust_analyzer = {},
+        rust_analyzer = {},
+        pyright = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -733,6 +796,7 @@ require('lazy').setup({
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
+        automatic_enable = true,
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
         automatic_installation = false,
         handlers = {
