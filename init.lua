@@ -152,6 +152,9 @@ vim.o.splitbelow = true
 vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
+-- use os clipboard in nvim
+vim.opt.clipboard = 'unnamed,unnamedplus'
+
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
 
@@ -234,7 +237,8 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
-vim.lsp.inlay_hint.enable(true, { 0 })
+-- vim.lsp.inlay_hint.enable(true, { 0 })
+
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
@@ -321,6 +325,25 @@ require('lazy').setup({
     'mrcjkb/rustaceanvim',
     version = '^6',
     lazy = false,
+  },
+
+  {
+    'christoomey/vim-tmux-navigator',
+    cmd = {
+      'TmuxNavigateLeft',
+      'TmuxNavigateDown',
+      'TmuxNavigateUp',
+      'TmuxNavigateRight',
+      'TmuxNavigatePrevious',
+      'TmuxNavigatorProcessList',
+    },
+    keys = {
+      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
+      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
+      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
+      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
+      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
+    },
   },
 
   -- {
