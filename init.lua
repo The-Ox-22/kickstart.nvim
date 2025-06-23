@@ -321,11 +321,11 @@ require('lazy').setup({
     end,
   },
 
-  {
-    'mrcjkb/rustaceanvim',
-    version = '^6',
-    lazy = false,
-  },
+  -- {
+  --   'mrcjkb/rustaceanvim',
+  --   version = '^6',
+  --   lazy = false,
+  -- },
 
   {
     'christoomey/vim-tmux-navigator',
@@ -715,7 +715,7 @@ require('lazy').setup({
           -- The following code creates a keymap to toggle inlay hints in your
           -- code, if the language server you are using supports them
           --
-          -- This may be unwanted, since they displace some of your code
+          -- -- This may be unwanted, since they displace some of your code
           if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
             map('<leader>th', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
@@ -772,7 +772,7 @@ require('lazy').setup({
         -- clangd = {},
         gopls = {},
         -- pyright = {},
-        rust_analyzer = {},
+        -- rust_analyzer = {}, I think this is taken care of by rustaceanvim so we don't need it here
         pyright = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
