@@ -176,6 +176,15 @@ vim.o.confirm = true
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- nnoremap <leader>64e viWc<c-r>=system('base64 -w 0', @")<cr><esc>
+-- nnoremap <leader>64d viWc<c-r>=system('base64 --decode', @")<cr><esc>
+-- vnoremap <leader>64e c<c-r>=system('base64 -w 0', @")<cr><esc>
+-- vnoremap <leader>64d c<c-r>=system('base64 --decode', @")<cr><esc>
+vim.keymap.set('n', '<leader>64e', "viWc<c-r>=system('base64 -w 0', @\")<cr><esc>")
+vim.keymap.set('n', '<leader>64d', "viWc<c-r>=system('base64 -d', @\")<cr><esc>")
+vim.keymap.set('v', '<leader>64e', "c<c-r>=system('base64 -w 0', @\")<cr><esc>")
+vim.keymap.set('v', '<leader>64d', "c<c-r>=system('base64 -d', @\")<cr><esc>")
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
