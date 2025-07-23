@@ -180,6 +180,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- nnoremap <leader>64d viWc<c-r>=system('base64 --decode', @")<cr><esc>
 -- vnoremap <leader>64e c<c-r>=system('base64 -w 0', @")<cr><esc>
 -- vnoremap <leader>64d c<c-r>=system('base64 --decode', @")<cr><esc>
+-- bindings for encoding/decoding
 vim.keymap.set('n', '<leader>64e', "viWc<c-r>=system('base64 -w 0', @\")<cr><esc>")
 vim.keymap.set('n', '<leader>64d', "viWc<c-r>=system('base64 -d', @\")<cr><esc>")
 vim.keymap.set('v', '<leader>64e', "c<c-r>=system('base64 -w 0', @\")<cr><esc>")
@@ -363,6 +364,11 @@ require('lazy').setup({
     opts = {}, -- for default options, refer to the configuration section for custom setup.
     cmd = 'Trouble',
     keys = {
+      {
+        '<leader>tt',
+        '<cmd>Trouble<cr>',
+        desc = 'Diagnostics (Trouble) Menu',
+      },
       {
         '<leader>xx',
         '<cmd>Trouble diagnostics toggle<cr>',
