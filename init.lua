@@ -330,6 +330,13 @@ require('lazy').setup({
       require('nvim-tree').setup {
         vim.keymap.set('n', '<leader>,', ':NvimTreeToggle<CR>', { desc = 'Toggle nvim-tree', noremap = true }),
         vim.keymap.set('n', ',,', ':NvimTreeFocus<CR>', { desc = 'Focus nvim-tree', noremap = true }),
+        view = {
+          width = {
+            min = 20,
+            max = 80,
+          },
+          adaptive_size = true,
+        },
       }
     end,
   },
